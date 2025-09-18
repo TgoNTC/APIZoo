@@ -1,4 +1,4 @@
-package Dtos;
+package com.example.Zoo.DTO;
 
 import lombok.Data;
 

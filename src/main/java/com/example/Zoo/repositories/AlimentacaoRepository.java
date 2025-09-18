@@ -1,7 +1,6 @@
-package Repositories;
+package com.example.Zoo.Repositories;
 
-import Models.Alimentacao;
-import jdk.jfr.Registered;
+import com.example.Zoo.Models.Alimentacao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package Models;
+package com.example.Zoo.Models;
 
 
 import jakarta.persistence.Entity;

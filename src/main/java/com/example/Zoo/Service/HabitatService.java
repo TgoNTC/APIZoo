@@ -4,6 +4,7 @@ import com.example.Zoo.DTO.AnimalDTO;
 import com.example.Zoo.DTO.HabitatDTO;
 import com.example.Zoo.Models.Animal;
 import com.example.Zoo.Models.Habitat;
+import com.example.Zoo.Models.TipoHabitat;
 import com.example.Zoo.Repositories.HabitatRepository;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,10 @@ public class HabitatService {
     public Habitat getById(Long id){
         return habitatRepository.findById(id).orElseThrow(()->new RuntimeException("Habitat não encontrado"));
     }
+    public List<Habitat> getByTipo(TipoHabitat tipoHabitat){
+        return habitatRepository.findByTipoHabitat(tipoHabitat);
+    }
+
     public Habitat create(HabitatDTO habitatDTO){
         Habitat habitat = new Habitat();
         habitat.setNome(habitatDTO.nome());

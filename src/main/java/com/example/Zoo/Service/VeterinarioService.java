@@ -1,8 +1,8 @@
-package Services;
+package com.example.Zoo.Service;
 
-import Dtos.VeterinarioDto;
-import Models.Veterinario;
-import Repositories.VeterinarioRepository;
+import com.example.Zoo.DTO.VeterinarioDto;
+import com.example.Zoo.Models.Veterinario;
+import com.example.Zoo.Repositories.VeterinarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

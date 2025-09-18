@@ -3,6 +3,7 @@ package com.example.Zoo.Controller;
 import com.example.Zoo.DTO.HabitatDTO;
 import com.example.Zoo.Models.Animal;
 import com.example.Zoo.Models.Habitat;
+import com.example.Zoo.Models.TipoHabitat;
 import com.example.Zoo.Service.HabitatService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,11 @@ public class HabitatController {
     @GetMapping("/{id}")
     public ResponseEntity<Habitat> getById(Long id){
         return ResponseEntity.ok(habitatService.getById(id));
+    }
+    @GetMapping("/tipo/{tipo}")
+    public ResponseEntity<List<Habitat>> getByTipo(@PathVariable String tipo){
+        TipoHabitat tipoHabitat = TipoHabitat.valueOf(tipo.toUpperCase());
+        return ResponseEntity.ok(habitatService.getByTipo(tipoHabitat));
     }
     @PostMapping
     public ResponseEntity<Habitat> post(@RequestBody HabitatDTO habitatDTO){

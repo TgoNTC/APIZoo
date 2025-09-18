@@ -26,6 +26,16 @@ public class AnimalController {
     public ResponseEntity<Animal> getById(@PathVariable Long id) {
         return ResponseEntity.ok(animalService.getById(id));
     }
+    @GetMapping("/especie/{especie}")
+    public ResponseEntity<List<Animal>> getBySpecie(@PathVariable String especie){
+        return ResponseEntity.ok(animalService.getBySpecie(especie));
+    }
+    @GetMapping("/idade")
+    public ResponseEntity<List<Animal>> getByAgeRange(
+            @RequestParam(required = false) Integer idadeMin,
+            @RequestParam(required = false) Integer idadeMax) {
+        return ResponseEntity.ok(animalService.getByAgeRange(idadeMin, idadeMax));
+    }
     @PostMapping
     public ResponseEntity<Animal> create(@RequestBody AnimalDTO animalDTO){
         return ResponseEntity.ok(animalService.create(animalDTO));

@@ -1,42 +1,42 @@
-package Controller;
+package com.example.Zoo.Controller;
 
-import Dtos.AlimentacaoDto;
-import Models.Alimentacao;
-import Services.AlimentacaoService;
+import com.example.Zoo.DTO.VeterinarioDto;
+import com.example.Zoo.Models.Veterinario;
+import com.example.Zoo.Service.VeterinarioService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/alimentacoes")
-public class AlimentacaoController {
+@RequestMapping("/veterinarios")
+public class VeterinarioController {
 
-    private final AlimentacaoService service;
+    private final VeterinarioService service;
 
-    public AlimentacaoController(AlimentacaoService service) {
+    public VeterinarioController(VeterinarioService service) {
         this.service = service;
     }
 
     @PostMapping
-    public ResponseEntity<Alimentacao> criar(@RequestBody AlimentacaoDto dto) {
+    public ResponseEntity<Veterinario> criar(@RequestBody VeterinarioDto dto) {
         return ResponseEntity.ok(service.salvar(dto));
     }
 
     @GetMapping
-    public ResponseEntity<List<Alimentacao>> listar() {
+    public ResponseEntity<List<Veterinario>> listar() {
         return ResponseEntity.ok(service.listar());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Alimentacao> buscarPorId(@PathVariable Long id) {
+    public ResponseEntity<Veterinario> buscarPorId(@PathVariable Long id) {
         return service.buscarPorId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Alimentacao> atualizar(@PathVariable Long id, @RequestBody AlimentacaoDto dto) {
+    public ResponseEntity<Veterinario> atualizar(@PathVariable Long id, @RequestBody VeterinarioDto dto) {
         return ResponseEntity.ok(service.atualizar(id, dto));
     }
 
