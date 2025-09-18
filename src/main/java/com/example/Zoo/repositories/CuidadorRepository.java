@@ -1,6 +1,6 @@
-package com.example.Zoo.repositories;
+package com.example.Zoo.Repositories;
 
-import com.example.Zoo.models.Cuidador;
+import com.example.Zoo.Models.Cuidador;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

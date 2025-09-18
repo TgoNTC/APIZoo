@@ -1,7 +1,7 @@
-package com.example.Zoo.controllers;
+package com.example.Zoo.Controller;
 
-import com.example.Zoo.dtos.CuidadorDTO;
-import com.example.Zoo.services.CuidadorService;
+import com.example.Zoo.DTO.CuidadorDTO;
+import com.example.Zoo.Service.CuidadorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

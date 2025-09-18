@@ -1,0 +1,44 @@
+package com.example.Zoo.Service;
+
+import com.example.Zoo.DTO.AnimalDTO;
+import com.example.Zoo.Models.Animal;
+import com.example.Zoo.Repositories.AnimalRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class AnimalService {
+    private AnimalRepository animalRepository;
+    public AnimalService(AnimalRepository animalRepository){
+        this.animalRepository = animalRepository;
+    }
+    public List<Animal> getAll(){
+       return animalRepository.findAll();
+    }
+    public Animal getById(Long id){
+        return animalRepository.findById(id).orElseThrow(()->new RuntimeException("Animal não encontrado"));
+    }
+    public Animal create(AnimalDTO animalDTO){
+        Animal animal = new Animal();
+        animal.setNome(animalDTO.nome());
+        animal.setCuidador(animalDTO.cuidador());
+        animal.setEspecie(animalDTO.especie());
+        animal.setHabitat(animalDTO.habitat());
+        animal.setIdade(animalDTO.idade());
+        return animalRepository.save(animal);
+    }
+    public void delete(Long id){
+        Animal animal = getById(id);
+        animalRepository.delete(animal);
+    }
+    public Animal update(Long id, AnimalDTO animalDTO){
+        Animal animal = getById(id);
+        animal.setNome(animalDTO.nome());
+        animal.setCuidador(animalDTO.cuidador());
+        animal.setEspecie(animalDTO.especie());
+        animal.setHabitat(animalDTO.habitat());
+        animal.setIdade(animalDTO.idade());
+        return animalRepository.save(animal);
+    }
+}

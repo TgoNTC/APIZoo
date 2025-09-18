@@ -4,16 +4,19 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-public class Cuidador {
-
+@AllArgsConstructor
+@NoArgsConstructor
+public class Habitat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    private String especialidade;
-    private String turnoDeTrabalho;
+    private TipoHabitat tipo;
+    private int capacidadeMaxAnimais;
 }

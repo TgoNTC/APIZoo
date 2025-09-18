@@ -1,8 +1,8 @@
-package com.example.Zoo.services;
+package com.example.Zoo.Service;
 
-import com.example.Zoo.dtos.CuidadorDTO;
-import com.example.Zoo.models.Cuidador;
-import com.example.Zoo.repositories.CuidadorRepository;
+import com.example.Zoo.DTO.CuidadorDTO;
+import com.example.Zoo.Models.Cuidador;
+import com.example.Zoo.Repositories.CuidadorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
