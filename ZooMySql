@@ -1,0 +1,28 @@
+CREATE DATABASE Zoo;
+USE Zoo;
+
+INSERT INTO Cuidador (id, nome, especialidade, turno_de_trabalho) VALUES
+(1, 'João Silva', 'Mamíferos', 'Manhã'),
+(2, 'Maria Oliveira', 'Répteis e Aves', 'Tarde'),
+(3, 'Carlos Souza', 'Animais Aquáticos', 'Noite');
+
+INSERT INTO Veterinario (id, nome, crmv, especialidade) VALUES
+(1, 'Ana Clara', 'CRM-SP 12345', 'Felinos'),
+(2, 'Pedro Rocha', 'CRM-RJ 67890', 'Aves Exóticas');
+
+INSERT INTO Habitat (id, nome, tipo, capacidade_maxima) VALUES
+(101, 'Savana', 'Terrestre', 3),
+(102, 'Floresta Tropical', 'Terrestre', 2),
+(103, 'Aquário Central', 'Aquático', 5);
+
+INSERT INTO Animal (id, nome, especie, idade, habitat_id, cuidador_id) VALUES
+(1, 'Leão', 'Mamífero', 5, 101, 1),
+(2, 'Zebra', 'Mamífero', 3, 101, 1),
+(3, 'Tigre', 'Mamífero', 8, 102, 2),
+(4, 'Papagaio', 'Ave', 2, 102, 2);
+
+
+INSERT INTO Alimentacao (id, tipo_de_comida, quantidade_diaria, animal_id) VALUES
+(1001, 'Carne', 5.0, 1),
+(1002, 'Capim', 10.0, 2),
+(1003, 'Frutas', 1.0, 4);
