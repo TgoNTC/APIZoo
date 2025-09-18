@@ -23,7 +23,7 @@ public class HabitatService {
         return habitatRepository.findById(id).orElseThrow(()->new RuntimeException("Habitat não encontrado"));
     }
     public List<Habitat> getByTipo(TipoHabitat tipoHabitat){
-        return habitatRepository.findByTipoHabitat(tipoHabitat);
+        return habitatRepository.findByTipo(tipoHabitat);
     }
 
     public Habitat create(HabitatDTO habitatDTO){

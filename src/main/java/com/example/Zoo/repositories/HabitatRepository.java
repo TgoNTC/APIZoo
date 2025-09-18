@@ -11,5 +11,5 @@ import java.util.List;
 @Repository
 
 public interface HabitatRepository extends JpaRepository<Habitat, Long> {
-    List<Habitat> findByTipoHabitat(TipoHabitat tipoHabitat);
+    List<Habitat> findByTipo(TipoHabitat tipo);
 }

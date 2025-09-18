@@ -29,13 +29,12 @@ public class AnimalService {
         return animalRepository.save(animal);
     }
     public List<Animal> getByAgeRange(Integer idadeMin, Integer idadeMax){
-        // Lógica para lidar com os parâmetros opcionais
         if (idadeMin != null && idadeMax != null) {
-            return animalRepository.findByAgeBetween(idadeMin, idadeMax);
+            return animalRepository.findByIdadeBetween(idadeMin, idadeMax);
         } else if (idadeMin != null) {
-            return animalRepository.findByAgeGreaterThanEqual(idadeMin);
+            return animalRepository.findByIdadeGreaterThanEqual(idadeMin);
         } else if (idadeMax != null) {
-            return animalRepository.findByAgeLessThanEqual(idadeMax);
+            return animalRepository.findByIdadeLessThanEqual(idadeMax);
         } else {
             return animalRepository.findAll();
         }
