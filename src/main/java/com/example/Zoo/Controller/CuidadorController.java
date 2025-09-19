@@ -1,6 +1,9 @@
 package com.example.Zoo.Controller;
 
+import com.example.Zoo.DTO.AnimalDTO;
 import com.example.Zoo.DTO.CuidadorDTO;
+import com.example.Zoo.Models.Animal;
+import com.example.Zoo.Models.Cuidador;
 import com.example.Zoo.Service.CuidadorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,29 +20,22 @@ public class CuidadorController {
     private CuidadorService cuidadorService;
 
     @GetMapping
-    public List<CuidadorDTO> findAll() {
+    public List<Cuidador> findAll() {
         return cuidadorService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CuidadorDTO> findById(@PathVariable Long id) {
-        Optional<CuidadorDTO> cuidador = cuidadorService.findById(id);
-        return cuidador.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<Cuidador> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(cuidadorService.getById(id));
     }
-
     @PostMapping
-    public CuidadorDTO create(@RequestBody CuidadorDTO cuidadorDTO) {
-        return cuidadorService.save(cuidadorDTO);
+    public ResponseEntity<Cuidador> create(@RequestBody CuidadorDTO cuidadorDTO){
+        return ResponseEntity.ok(cuidadorService.save(cuidadorDTO));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<CuidadorDTO> update(@PathVariable Long id, @RequestBody CuidadorDTO cuidadorDTO) {
-        CuidadorDTO updatedCuidador = cuidadorService.update(id, cuidadorDTO);
-        if (updatedCuidador != null) {
-            return ResponseEntity.ok(updatedCuidador);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    @PutMapping
+    public ResponseEntity<Cuidador> put(@PathVariable Long id, @RequestBody CuidadorDTO cuidadorDTO){
+        return ResponseEntity.ok(cuidadorService.update(id, cuidadorDTO));
     }
 
     @DeleteMapping("/{id}")
@@ -54,10 +50,8 @@ public class CuidadorController {
             @RequestParam(required = false) String turno) {
         if (especialidade != null) {
             return cuidadorService.findByEspecialidade(especialidade);
-        } else if (turno != null) {
-            return cuidadorService.findByTurnoDeTrabalho(turno);
         } else {
-            return cuidadorService.findAll();
+            return cuidadorService.findByTurnoDeTrabalho(turno);
         }
     }
 }

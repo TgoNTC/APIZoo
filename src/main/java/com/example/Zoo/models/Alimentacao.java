@@ -1,12 +1,9 @@
 package com.example.Zoo.Models;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 
 @Data
 @AllArgsConstructor
@@ -21,8 +18,9 @@ public class Alimentacao {
     private String comida;
 
     private Long qtdDiaria;
-
-    private String animal;
+    @ManyToOne
+    @JoinColumn(name="animal_id")
+    private Animal animal;
 
 
     public Long getId() {
@@ -49,11 +47,4 @@ public class Alimentacao {
         this.qtdDiaria = qtdDiaria;
     }
 
-    public String getAnimal() {
-        return animal;
-    }
-
-    public void setAnimal(String animal) {
-        this.animal = animal;
-    }
 }

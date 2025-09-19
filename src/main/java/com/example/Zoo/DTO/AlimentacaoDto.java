@@ -1,10 +1,9 @@
 package com.example.Zoo.DTO;
 
+import com.example.Zoo.Models.Animal;
 import lombok.Data;
 
-@Data
-public class AlimentacaoDto {
-    private String comida;
-    private Long qtdDiaria;
-    private String animal;
+
+public record AlimentacaoDto(String comida, Long qtdDiaria, Animal animal) {
+
 }

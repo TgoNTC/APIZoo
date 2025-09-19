@@ -18,12 +18,7 @@ public class Animal {
     @ManyToOne
     @JoinColumn(name="habitat_id")
     private Habitat habitat;
-//    @ManyToMany
-//    @JoinTable(
-//            name="animal_cuidador",
-//            joinColumns = @JoinColumn(name= "animal_id"),
-//            inverseJoinColumns = @JoinColumn(name="cuidador_id")
-//    )
-//    private List<Cuidador> cuidadores;
-    private String cuidador;
+    @ManyToOne
+    @JoinColumn(name="cuidador_id")
+    private Cuidador cuidador;
 }

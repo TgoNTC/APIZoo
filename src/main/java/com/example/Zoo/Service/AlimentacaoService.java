@@ -19,9 +19,9 @@ public class AlimentacaoService {
 
     public Alimentacao salvar(AlimentacaoDto dto) {
         Alimentacao alimentacao = new Alimentacao();
-        alimentacao.setComida(dto.getComida());
-        alimentacao.setQtdDiaria(dto.getQtdDiaria());
-        alimentacao.setAnimal(dto.getAnimal());
+        alimentacao.setComida(dto.comida());
+        alimentacao.setQtdDiaria(dto.qtdDiaria());
+        alimentacao.setAnimal(dto.animal());
         return repository.save(alimentacao);
     }
 
@@ -35,9 +35,9 @@ public class AlimentacaoService {
 
     public Alimentacao atualizar(Long id, AlimentacaoDto dto) {
         return repository.findById(id).map(alimentacao -> {
-            alimentacao.setComida(dto.getComida());
-            alimentacao.setQtdDiaria(dto.getQtdDiaria());
-            alimentacao.setAnimal(dto.getAnimal());
+            alimentacao.setComida(dto.comida());
+            alimentacao.setQtdDiaria(dto.qtdDiaria()    );
+            alimentacao.setAnimal(dto.animal());
             return repository.save(alimentacao);
         }).orElseThrow(() -> new RuntimeException("Alimentação não encontrada"));
     }

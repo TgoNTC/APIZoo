@@ -16,4 +16,5 @@ public class Cuidador {
     private String nome;
     private String especialidade;
     private String turnoDeTrabalho;
+    private String email;
 }

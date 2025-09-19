@@ -1,6 +1,8 @@
 package com.example.Zoo.Service;
 
+import com.example.Zoo.DTO.AnimalDTO;
 import com.example.Zoo.DTO.CuidadorDTO;
+import com.example.Zoo.Models.Animal;
 import com.example.Zoo.Models.Cuidador;
 import com.example.Zoo.Repositories.CuidadorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,26 +18,24 @@ public class CuidadorService {
     @Autowired
     private CuidadorRepository cuidadorRepository;
 
-    public List<CuidadorDTO> findAll() {
-        return cuidadorRepository.findAll().stream().map(this::toDTO).collect(Collectors.toList());
+    public List<Cuidador> findAll() {
+        return cuidadorRepository.findAll();
     }
 
-    public Optional<CuidadorDTO> findById(Long id) {
-        return cuidadorRepository.findById(id).map(this::toDTO);
+    public Cuidador getById(Long id){
+        return cuidadorRepository.findById(id).orElseThrow(()->new RuntimeException("Animal não encontrado"));
     }
 
-    public CuidadorDTO save(CuidadorDTO cuidadorDTO) {
-        Cuidador cuidador = toEntity(cuidadorDTO);
-        return toDTO(cuidadorRepository.save(cuidador));
-    }
 
-    public CuidadorDTO update(Long id, CuidadorDTO cuidadorDTO) {
-        return cuidadorRepository.findById(id).map(existingCuidador -> {
-            existingCuidador.setNome(cuidadorDTO.getNome());
-            existingCuidador.setEspecialidade(cuidadorDTO.getEspecialidade());
-            existingCuidador.setTurnoDeTrabalho(cuidadorDTO.getTurnoDeTrabalho());
-            return toDTO(cuidadorRepository.save(existingCuidador));
-        }).orElse(null); // Or throw an exception
+
+
+    public Cuidador update(Long id, CuidadorDTO cuidadorDTO){
+        Cuidador cuidador = getById(id);
+        cuidador.setNome(cuidadorDTO.nome());
+        cuidador.setEspecialidade(cuidadorDTO.especialidade());
+        cuidador.setTurnoDeTrabalho(cuidadorDTO.turnoDeTrabalho());
+        cuidador.setEmail(cuidadorDTO.email());
+        return cuidadorRepository.save(cuidador);
     }
 
     public void deleteById(Long id) {
@@ -43,28 +43,28 @@ public class CuidadorService {
     }
 
     public List<CuidadorDTO> findByEspecialidade(String especialidade) {
-        return cuidadorRepository.findByEspecialidade(especialidade).stream().map(this::toDTO).collect(Collectors.toList());
+        return cuidadorRepository.findByEspecialidade(especialidade);
     }
 
     public List<CuidadorDTO> findByTurnoDeTrabalho(String turno) {
-        return cuidadorRepository.findByTurnoDeTrabalho(turno).stream().map(this::toDTO).collect(Collectors.toList());
+        return cuidadorRepository.findByTurnoDeTrabalho(turno);
     }
 
-    private CuidadorDTO toDTO(Cuidador cuidador) {
-        CuidadorDTO dto = new CuidadorDTO();
-        dto.setId(cuidador.getId());
-        dto.setNome(cuidador.getNome());
-        dto.setEspecialidade(cuidador.getEspecialidade());
-        dto.setTurnoDeTrabalho(cuidador.getTurnoDeTrabalho());
-        return dto;
+    public Cuidador save(CuidadorDTO cuidadorDTO) {
+        Cuidador cuidador = new Cuidador();
+        cuidador.setNome(cuidadorDTO.nome());
+        cuidador.setEspecialidade(cuidadorDTO.especialidade());
+        cuidador.setTurnoDeTrabalho(cuidadorDTO.turnoDeTrabalho());
+        cuidador.setEmail(cuidadorDTO.email());
+        return cuidadorRepository.save(cuidador);
     }
+
 
     private Cuidador toEntity(CuidadorDTO dto) {
         Cuidador cuidador = new Cuidador();
-        // We don't set the ID from the DTO on creation
-        cuidador.setNome(dto.getNome());
-        cuidador.setEspecialidade(dto.getEspecialidade());
-        cuidador.setTurnoDeTrabalho(dto.getTurnoDeTrabalho());
-        return cuidador;
+        cuidador.setNome(dto.nome());
+        cuidador.setEspecialidade(dto.especialidade());
+        cuidador.setTurnoDeTrabalho(dto.turnoDeTrabalho());
+        return cuidadorRepository.save(cuidador);
     }
 }
